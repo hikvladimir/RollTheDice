@@ -6,22 +6,32 @@ public class Main {
     public static void main(String[] args) {
         int max=100;
         int sicret=(int)(Math.random()*++max);
-         int pop=1;
+         int pop=0;
         Scanner in=new Scanner(System.in);
-        int Chislo=0;
+        int chislo=0;
         System.out.println("Угадай число от 1 до 100");
+        String  str="";
+       while (sicret!=chislo) {
 
-       while (sicret!=Chislo) {
-           pop++;
             System.out.print("Введи число: ");
-            Chislo= in.nextInt();
-            if (sicret < Chislo) {
-                System.out.println("Я сам в шоке, но, загаданное число меньше, брат");
-            } else if (sicret > Chislo) {
-                System.out.println("Не ожидал от тебя такого. Загаданное число больше, брат");
+            str= in.next();
+            if (str.equals("RESULT")){
+                System.out.println("Количество попыток "+pop);
+                continue;
+            }
+            try {
+                chislo=Integer.parseInt(str);
+            } catch (Exception e){
+                System.out.println("Нет это не число от 0 до 100");
+                continue;
             }
 
-
+            if (sicret < chislo) {
+                System.out.println("Я сам в шоке, но, загаданное число меньше, брат");
+            } else if (sicret > chislo) {
+                System.out.println("Не ожидал от тебя такого. Загаданное число больше, брат");
+            }
+            pop++;
         }
         System.out.println("Поздравляю! Вы угадали число " + sicret +" за "+pop+" попыток");
         in.close();
