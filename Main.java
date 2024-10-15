@@ -1,18 +1,28 @@
 
-import java.util.Random;
+
 import java.util.Scanner;;
 
 public class Main {
     public static void main(String[] args) {
-        int max=100;
-        int sicret=(int)(Math.random()*++max);
-         int pop=0;
+        int sicret;
+        int pop;
+
         Scanner in=new Scanner(System.in);
         int chislo=0;
         System.out.println("Угадай число от 1 до 100");
         String  str="";
-       while (sicret!=chislo) {
+        String str2="";
 
+        do{
+            int max=100;
+            sicret=(int)(Math.random()*++max);
+            System.out.println("Играем еще?");
+            str2=in.next();
+        } while (str2.equals("y"));
+        do {
+
+
+            pop=0;
             System.out.print("Введи число: ");
             str= in.next();
             if (str.equals("RESULT")){
@@ -25,7 +35,6 @@ public class Main {
                 System.out.println("Нет это не число от 0 до 100");
                 continue;
             }
-
             if (sicret < chislo) {
                 System.out.println("Я сам в шоке, но, загаданное число меньше, брат");
             } else if (sicret > chislo) {
@@ -33,8 +42,14 @@ public class Main {
             }
             pop++;
         }
+       while (sicret!=chislo);
         System.out.println("Поздравляю! Вы угадали число " + sicret +" за "+pop+" попыток");
-        in.close();
+
+        System.out.println("Сыграем еще?");
+        str2=in.next();
+
+
+
     }
 
 }
