@@ -5,9 +5,10 @@ import java.util.Scanner;;
 public class Main {
     public static void main(String[] args) {
 
-         int pop=0;
+         int pop=1;
         Scanner in=new Scanner(System.in);
         int chislo=0;
+        int record=0;
         System.out.println("Угадай число от 1 до 100");
         String  str="";
         String str2;
@@ -17,8 +18,11 @@ public class Main {
             while (sicret!=chislo) {
                 System.out.print("Введи число: ");
                 str= in.next();
-                if (str.equals("RESULT")){
+                if ((str.equals("RESULT")&&(record==0))){
                     System.out.println("Количество попыток "+pop);
+                    continue;
+                }else if (str.equals("RESULT")){
+                    System.out.println("Количество попыток "+pop+"лучшая игра "+record);
                     continue;
                 }
                 try {
@@ -35,9 +39,17 @@ public class Main {
                 pop++;
             }
 
-            System.out.println("Поздравляю! Вы угадали число " + sicret +" за "+pop+" попыток");
+
+            if (record==0){
+                record=pop;
+            } else if (record>pop) {
+                record=pop;
+            }
+
+            System.out.println("Поздравляю! Вы угадали число " + sicret +" за "+pop+" попыток лучшая попытка: " +record);
 
             System.out.println("Играем еще?");
+            pop=0;
             str2=in.next();
         } while (str2.equals("y"));
 
